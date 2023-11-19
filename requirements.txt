@@ -1,0 +1,2 @@
+eventlet~=0.33.3
+flask~=3.0.0

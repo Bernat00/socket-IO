@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>asd</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+</head>
+<body>
+<textarea id="text"></textarea>
+<button type="button" id="send-btn">send</button>
+<script>
+        const socket = io();
+
+        document.getElementById("send-btn").addEventListener("click", function() {
+            let text = document.getElementById("text").value;
+
+            socket.emit("teszt", text);
+        })
+    </script>
+<p id="asd"></p>
+<script>
+    socket.on("alma", function (asd){
+        document.getElementById("asd").innerHTML = asd
+    })
+</script>
+</body>
+</html>
