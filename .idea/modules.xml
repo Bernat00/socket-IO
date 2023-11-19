@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mé_nem_megy_a_socket.emit.iml" filepath="$PROJECT_DIR$/.idea/mé_nem_megy_a_socket.emit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/socket-IO.iml" filepath="$PROJECT_DIR$/.idea/socket-IO.iml" />
     </modules>
   </component>
 </project>

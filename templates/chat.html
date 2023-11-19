@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script>
+
+
+        function Send(mit){
+            const socket = io();
+            socket.emit('message', mit);
+        }
+    </script>
+</head>
+<body>
+
+<script>
+    let szoveg = document.getElementById('beszelgetes')
+</script>
+<textarea id="text_in"></textarea>
+<button type="button" onclick="Send(document.getElementById('text_in').value)">küld</button>
+</body>
+</html>
