@@ -14,6 +14,8 @@ asdasd = input("a")
 
 @app.route('/')
 def hello_world():
+    # betölteni db-ből üzeneteket, majd azt küldeni
+    # db_change-után emittelni a változásokat
     return render_template('index.html')
 
 
