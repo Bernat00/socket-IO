@@ -5,10 +5,9 @@
     <title>chat</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script>
-
+        const socket = io();
 
         function Send(mit){
-            const socket = io();
             socket.emit('message', mit);
         }
     </script>
@@ -20,5 +19,25 @@
 </script>
 <textarea id="text_in"></textarea>
 <button type="button" onclick="Send(document.getElementById('text_in').value)">küld</button>
+<br>
+<br>
+
+<form method="post">
+    <textarea name="message" id="message_text"></textarea>
+    <label for="message_text"> üzenete</label>
+    <input type="hidden" id="sid">
+    <label for="recipient">Ki kapja</label>
+    <input type="text" name="recipient" id="recipient">
+    <button type="submit">küld</button>
+</form>
+<br>
+<br>
+<p id="asd">def</p>
+<script>
+    document.getElementById('sid').value = socket.request.sid; // ez nem jó
+    socket.on("chat_message", function (asd){
+        document.getElementById("asd").innerHTML = asd
+    })
+</script>
 </body>
 </html>

@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <title>asd</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script>
+        const socket = io()
+    </script>
 </head>
 <body>
-<input type="text" id="username" placeholder="Username">
-<button type="button" id="send-btn">ok</button>
+<form method="post">
+    <input type="text" id="username" placeholder="Username">
+    <input type="hidden" id="sid">
+    <button type="submit" id="send-btn">ok</button>
+</form>
 <script>
-        const socket = io();
+    document.getElementById('sid').value = socket.request.sid  // ez nem jó
+</script>
 
-        document.getElementById("send-btn").addEventListener("click", function() {
-            let text = document.getElementById("username").value;
-
-            socket.emit("teszt", text);
-        })
-        socket.on('redirect', function (data) {
-            window.location = data.url;
-        });
-    </script>
 <p id="asd"></p>
 <script>
     socket.on("alma", function (asd){

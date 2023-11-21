@@ -10,40 +10,37 @@ socketio = SocketIO()
 socketio.init_app(app)
 
 
-asdasd = input("a")
+@app.route('/', methods=['POST', 'GET'])
+def landing_page():
+    if request.method == "POST":
+        username = request.form.get('username')
+        #    password = request.form.get('password')
+        session['id'] = request.form.get('sid')
+        session['username'] = username
+        return redirect(url_for('chat'))
 
-users = []
-
-
-@app.route('/')
-def hello_world():
     return render_template('index.html')
 
 
-@app.route('/chat')
+@app.route('/chat', methods=['POST', 'GET'])
 def chat():
-    # betölteni db-ből üzeneteket, majd azt küldeni
-    # db_change-után emittelni a változásokat
+    if request.method == 'POST':
+        packet = {
+            'message': request.form.get('message'),
+            'recipient': request.form.get('recipient'),
+            'username': session['username'],
+            'sender': request.form.get('sid')
+        }
+
+        socketio.emit('chat_message', packet, to=packet['recipient'])
+
     return render_template('chat.html')
-
-
-@socketio.on("teszt")  # a conecct működik de a msg nem
-def test_message(username):
-    print(username)
-    # session['username'] = username            nem lehet editálni a cookie-t csak https request-response dologoknál lehet
-    # (magyarul form-os login kell vagy request.sid alapú)
-    socketio.emit('redirect', {'url': url_for('chat')})
 
 
 @socketio.on('connect')
 def conected():
     print("connected!")
-    socketio.emit("alma", asdasd)
-
-
-@socketio.on('message')
-def receave_msg(msg):
-    print(msg)
+    socketio.emit("alma", "teszt")
 
 
 if __name__ == '__main__':
